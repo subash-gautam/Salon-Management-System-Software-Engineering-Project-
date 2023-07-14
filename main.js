@@ -9,29 +9,24 @@
         const incorrect = document.getElementById('incorrect');
         var username, password;
     }
+    
+    document.getElementById('header').innerHTML = `<h1>Salon Management System</h1>`;
+    demos.innerHTML = 'Empty demo section.';
+    logInPannel.innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
+    <button id="userLogin">Log In</button>
+    <button id="barberLogin">Barber Login</button></div>`;
 
-    {// function calls
-    initialHTMLFillUp();
-    }
+    document.getElementById('barberLogin').addEventListener('click', function(){
+        barberLogin();
+    });  
+    document.getElementById('userLogin').addEventListener('click', function(){
+        login();
+    });  
+    document.getElementById('booking').addEventListener('click', function(){
+        booking();
+    }); 
 
     // Function Haru Yata
-    function initialHTMLFillUp(){
-        document.getElementById('header').innerHTML = `<h1>Salon Management System</h1>`;
-        demos.innerHTML = 'Empty demo section.';
-        logInPannel.innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
-        <button id="userLogin">Log In</button>
-        <button id="barberLogin">Barber Login</button></div>`;
-
-        document.getElementById('barberLogin').addEventListener('click', function(){
-            barberLogin();
-        });  
-        document.getElementById('userLogin').addEventListener('click', function(){
-            login();
-        });  
-        document.getElementById('booking').addEventListener('click', function(){
-            booking();
-        });  
-    }
     function barberLogin(){
         main.innerHTML = `
             <form>
@@ -49,7 +44,7 @@
                 evt.preventDefault();
                 username = document.querySelector('#id').value;
                 password = document.querySelector('#password').value;
-                verifyLogin();
+                adminLoginConformation();
             });
     }
     function login(){
@@ -58,7 +53,7 @@
     function booking(){
         console.log("This is booking function");
     }
-    function verifyLogin(){
+    function adminLoginConformation(){
         console.log("User name : "+ username + "\nPassword: "+ password);
         if(1 || admin == username){ 
             if(1 || passkey == password){
