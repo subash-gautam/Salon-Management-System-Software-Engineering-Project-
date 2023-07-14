@@ -1,3 +1,4 @@
+// IIFE
 (function(){
     "use strict";
     
@@ -83,6 +84,5 @@
             </thead>
             <tbody></tbody>
         </table>`;
-    
     }
 })();
