@@ -1,9 +1,13 @@
 (function(){
     "use strict";
-
+    
     { // variable declaration
-        var demos = document.getElementById('demos');
-        var logInPannel = document.getElementById('logInPannel');
+        const demos = document.getElementById('demos');
+        const logInPannel = document.getElementById('logInPannel');
+        var main = document.getElementsByTagName('main')[0];
+        const admin = 'barber', passkey = 'password';
+        const incorrect = document.getElementById('incorrect');
+        var username, password;
     }
 
     {// function calls
@@ -29,12 +33,61 @@
         });  
     }
     function barberLogin(){
-        console.log("This is barber login function");
+        main.innerHTML = `
+            <form>
+                <label for="id">ID:  <input type="text" id="id"></label>
+                <label for="password">Password:  <input type="password" id="password" name="password"></label>
+                <span id="incorrect">
+                    <!-- Message on incorrect username or password dekhaaune -->
+                </span>
+                <button id="submit">Login</button>
+            </form>
+            <section id="adminPannel">
+            </section>`;
+            
+            document.getElementById("submit").addEventListener('click', function(evt){
+                evt.preventDefault();
+                username = document.querySelector('#id').value;
+                password = document.querySelector('#password').value;
+                verifyLogin();
+            });
     }
     function login(){
         console.log("This is user login function");
     }
     function booking(){
         console.log("This is booking function");
+    }
+    function verifyLogin(){
+        console.log("User name : "+ username + "\nPassword: "+ password);
+        if(1 || admin == username){ 
+            if(1 || passkey == password){
+                document.getElementsByTagName('form')[0].style.display = "none";
+                adminPannel();
+            }
+            else{
+                incorrect.innerHTML = "Incorrect password entered !!";
+                document.getElementById('submit').innerHTML = 'Retry';
+            }
+        }else{
+                incorrect.innerHTML = "username or password is not correct!!";
+                document.getElementById('submit').innerHTML = 'Retry';
+        }
+    }
+    function adminPannel(){
+        var pannel = document.getElementById('adminPannel');
+        pannel.innerHTML = `<table>
+            <thead>
+                <td id = "sn" >Queue number</td>
+                <td id = "nameOnList" >Name</td>
+                <td id = "emailOnList" >Email(/phone)</td>
+                <td id = "hairStyleOnList" >Hair Style</td>
+                <td id = "queueStatus" >Status</td>
+                <td>Payment Status</td>
+                <td id = "queueAction">Action</td>
+            </thead>
+            <tbody></tbody>
+        </table>`;
+    
     }
 })();

@@ -1,6 +1,6 @@
-var admin = 'barber', passkey = 'password';
-var incorrect = document.getElementById('incorrect');
-var username, password;
+const admin = 'barber', passkey = 'password';
+const incorrect = document.getElementById('incorrect');
+let username, password;
 
 document.getElementById("submit").addEventListener('click', function(evt){
     evt.preventDefault();
