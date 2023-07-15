@@ -65,6 +65,7 @@ td {
 }
 .thumbnail {
     flex: 1;
+    width: auto;
     position: relative;
     overflow: hidden;
     margin: 10px;
@@ -73,9 +74,8 @@ td {
     margin-right: 0;
 }
 .thumbnail-image {
-    width: 100%;
+    width: 30lvw;
     height: 100%;
-    background-image: url('images/beard1.jpeg');
     background-size: cover;
     background-position: center;
     opacity: 0.5;
