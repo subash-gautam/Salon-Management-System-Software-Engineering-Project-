@@ -9,6 +9,9 @@
         const admin = 'barber', passkey = 'password';
         const incorrect = document.getElementById('incorrect');
         var username, password;
+        const basicStyles = document.querySelectorAll('.thumbnail')[0];
+        const specialStyles = document.querySelectorAll('.thumbnail')[1];
+        const beardStyles = document.querySelectorAll('.thumbnail')[2];
     }
     
     document.getElementById('header').innerHTML = `<h1>Salon Management System</h1>`;

@@ -1,7 +1,7 @@
 var styles = {
     style1 : {
         image: 'hair1.jpeg',
-        type: "hair"
+        type: "special"
     },
     style2 : {
         
