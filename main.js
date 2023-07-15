@@ -12,7 +12,6 @@
     }
     
     document.getElementById('header').innerHTML = `<h1>Salon Management System</h1>`;
-    demos.innerHTML = 'Empty demo section.';
     logInPannel.innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
     <button id="userLogin">Log In</button>
     <button id="barberLogin">Barber Login</button></div>`;
