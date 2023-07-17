@@ -2,17 +2,16 @@
 (function(){
     "use strict";
     
-    { // variable declaration
-        const demos = document.getElementById('demos');
-        const logInPannel = document.getElementById('logInPannel');
-        var main = document.getElementsByTagName('main')[0];
-        const admin = 'barber', passkey = 'password';
-        const incorrect = document.getElementById('incorrect');
-        var username, password;
-        const basicStyles = document.querySelectorAll('.thumbnail')[0];
-        const specialStyles = document.querySelectorAll('.thumbnail')[1];
-        const beardStyles = document.querySelectorAll('.thumbnail')[2];
-    }
+// variable declaration
+    const demos = document.getElementById('demos');
+    const logInPannel = document.getElementById('logInPannel');
+    var main = document.getElementsByTagName('main')[0];
+    const admin = 'barber', passkey = 'password';
+    const incorrect = document.getElementById('incorrect');
+    var username, password;
+    const basicStyles = document.querySelectorAll('.thumbnail-image')[0];
+    const specialStyles = document.querySelectorAll('.thumbnail-image')[1];
+    const beardStyles = document.querySelectorAll('.thumbnail-image')[2];
     
     document.getElementById('header').innerHTML = `<h1>Salon Management System</h1>`;
     logInPannel.innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
@@ -86,5 +85,17 @@
             </thead>
             <tbody></tbody>
         </table>`;
+    }
+    basicStyles.addEventListener('click', function(){
+        styleList(simple);
+    });
+    specialStyles.addEventListener('click', function(){
+        styleList(special)
+    });
+    beardStyles.addEventListener('click', function(){
+        styleList(beard);
+    });
+    function styleList(style){
+
     }
 })();
