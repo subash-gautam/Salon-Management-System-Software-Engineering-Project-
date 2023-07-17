@@ -12,12 +12,12 @@
     const basicStyles = document.querySelectorAll('.thumbnail-image')[0];
     const specialStyles = document.querySelectorAll('.thumbnail-image')[1];
     const beardStyles = document.querySelectorAll('.thumbnail-image')[2];
-    
-    document.getElementById('header').innerHTML = `<h1>Salon Management System</h1>`;
-    logInPannel.innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
-    <button id="userLogin">Log In</button>
-    <button id="barberLogin">Barber Login</button></div>`;
+    home();
 
+    document.getElementById('homeIcon').addEventListener('click', function(){
+        console.log("Home button clicked.");
+        home();
+    });
     document.getElementById('barberLogin').addEventListener('click', function(){
         barberLogin();
     });  
@@ -26,9 +26,24 @@
     });  
     document.getElementById('booking').addEventListener('click', function(){
         booking();
-    }); 
-
+    });
+    document.getElementById('barberInfo').addEventListener('click', function(){
+        main.innerHTML = `<h1>Barber Introduction</h1>
+        <h2>Name: Nabin Kumar Sah</h2>
+        <h2>Address: Pokhara - 16, Lamachaur, Seti Khola ko bagar mai</h2>
+        <h2>Salon Address: in front of WRC</h2>
+        <h2>Experience: 12 years only</h2>
+        <img src="images/barber.jpg" alt="barber">`;
+    });
+    
     // Function Haru Yata
+    function home(){
+        document.getElementById('header').innerHTML = `<img src="images/Home.png" alt="Home" id="homeIcon"><h1>Salon Management System</h1>`;
+        logInPannel.innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
+        <button id="userLogin">Log In</button>
+        <button id="barberInfo">About Barber</button>
+        <button id="barberLogin">Barber Login</button></div>`;
+    }
     function barberLogin(){
         main.innerHTML = `
             <form>
@@ -90,7 +105,7 @@
         styleList(simple);
     });
     specialStyles.addEventListener('click', function(){
-        styleList(special)
+        styleList(special);
     });
     beardStyles.addEventListener('click', function(){
         styleList(beard);
