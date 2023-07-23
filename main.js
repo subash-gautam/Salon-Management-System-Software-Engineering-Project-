@@ -9,9 +9,6 @@
     const admin = 'barber', passkey = 'password';
     const incorrect = document.getElementById('incorrect');
     var username, password;
-    const basicStyles = document.querySelectorAll('.thumbnail-image')[0];
-    const specialStyles = document.querySelectorAll('.thumbnail-image')[1];
-    const beardStyles = document.querySelectorAll('.thumbnail-image')[2];
     document.getElementById('header').innerHTML = `<img src="images/Home.png" alt="Home" id="homeIcon"><h1>Salon Management System</h1>`;
     main.innerHTML = `<section id="demos">
         <div class="thumbnail">
@@ -51,8 +48,8 @@
     <button id="barberLogin">Barber Login</button></div>`;
 
     document.getElementById('homeIcon').addEventListener('click', function(){
-        console.log("Home button clicked.");
         everything();
+        console.log("Home button clicked.");
     });
     document.getElementById('barberLogin').addEventListener('click', function(){
         barberLogin();
@@ -64,12 +61,23 @@
         booking();
     });
     document.getElementById('barberInfo').addEventListener('click', function(){
-        main.innerHTML = `<h1>Barber Introduction</h1>
+        main.innerHTML = `<div id = "barberDetail"><h1>Barber Introduction</h1>
         <h2>Name: Nabin Kumar Sah</h2>
         <h2>Address: Pokhara - 16, Lamachaur, Seti Khola ko bagar mai</h2>
         <h2>Salon Address: in front of WRC</h2>
         <h2>Experience: 12 years only</h2>
-        <img src="images/barber.jpg" alt="barber">`;
+        </div>
+        <img src="images/barber.jpg" id = "barberImg" alt="barber">`;
+    });
+    document.querySelectorAll('.thumbnail-image')[0].addEventListener('click', function(){
+        console.log("Ghanta");
+        styleList(0);
+    });
+    document.querySelectorAll('.thumbnail-image')[1].addEventListener('click', function(){
+        styleList(1);
+    });
+    document.querySelectorAll('.thumbnail-image')[2].addEventListener('click', function(){
+        styleList(2);
     });
     
     // Function Haru Yata
@@ -130,16 +138,11 @@
             <tbody></tbody>
         </table>`;
     }
-    basicStyles.addEventListener('click', function(){
-        styleList(simple);
-    });
-    specialStyles.addEventListener('click', function(){
-        styleList(special);
-    });
-    beardStyles.addEventListener('click', function(){
-        styleList(beard);
-    });
     function styleList(style){
         // list of different styles(hair(basic/special) or beard) to show as choosen by user
+        var imgIndexList = [];
+        var imgIndex = Math.floor( Math.random() * 3 );
+        console.log("Clicked to view "+ style);
+        console.log(imgIndex);
     }
 })();
