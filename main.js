@@ -1,5 +1,5 @@
 // IIFE
-(function(){
+(function everything(){
     "use strict";
     
 // variable declaration
@@ -12,11 +12,47 @@
     const basicStyles = document.querySelectorAll('.thumbnail-image')[0];
     const specialStyles = document.querySelectorAll('.thumbnail-image')[1];
     const beardStyles = document.querySelectorAll('.thumbnail-image')[2];
-    home();
+    document.getElementById('header').innerHTML = `<img src="images/Home.png" alt="Home" id="homeIcon"><h1>Salon Management System</h1>`;
+    main.innerHTML = `<section id="demos">
+        <div class="thumbnail">
+            <div class="thumbnail-image">
+                <img src="images/simple1.jpg" alt="">
+            </div>
+            <div class="thumbnail-content">
+                <h3>Simple Hair Styles</h3>
+            </div>
+        </div>
+        <div class="thumbnail">
+            <div class="thumbnail-image">
+                <img src="images/hair2.jpg" alt="">
+            </div>
+            <div class="thumbnail-content">
+                <h3>Special Styles</h3>
+            </div>
+        </div>
+        <div class="thumbnail">
+            <div class="thumbnail-image">
+                <img src="images/beard1.jpg" alt="">
+            </div>
+            <div class="thumbnail-content">
+                <h3>Beard Styles</h3>
+            </div>
+        </div>
+    </section>
+    <section id="logInPannel">
+        <div id="logInDiv"><button id="booking">Book Now</button>
+        <button id="userLogin">Log In</button>
+        <button id="barberInfo">About Barber</button>
+        <button id="barberLogin">Barber Login</button></div>
+    </section>`;
+    document.getElementById('logInPannel').innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
+    <button id="userLogin">Log In</button>
+    <button id="barberInfo">About Barber</button>
+    <button id="barberLogin">Barber Login</button></div>`;
 
     document.getElementById('homeIcon').addEventListener('click', function(){
         console.log("Home button clicked.");
-        home();
+        everything();
     });
     document.getElementById('barberLogin').addEventListener('click', function(){
         barberLogin();
@@ -37,13 +73,6 @@
     });
     
     // Function Haru Yata
-    function home(){
-        document.getElementById('header').innerHTML = `<img src="images/Home.png" alt="Home" id="homeIcon"><h1>Salon Management System</h1>`;
-        logInPannel.innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
-        <button id="userLogin">Log In</button>
-        <button id="barberInfo">About Barber</button>
-        <button id="barberLogin">Barber Login</button></div>`;
-    }
     function barberLogin(){
         main.innerHTML = `
             <form>
@@ -111,6 +140,6 @@
         styleList(beard);
     });
     function styleList(style){
-
+        // list of different styles(hair(basic/special) or beard) to show as choosen by user
     }
 })();
