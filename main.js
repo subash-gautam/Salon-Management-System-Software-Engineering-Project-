@@ -21,7 +21,7 @@
         </div>
         <div class="thumbnail">
             <div class="thumbnail-image">
-                <img src="images/hair2.jpg" alt="">
+                <img src="images/special1.jpg" alt="">
             </div>
             <div class="thumbnail-content">
                 <h3>Special Styles</h3>
@@ -141,7 +141,7 @@
     function styleList(style){
         // list of different styles(hair(basic/special) or beard) to show as choosen by user
         var imgIndexList = [];
-        var imgIndex = Math.floor( Math.random() * 3 );
+        var imgIndex = Math.floor( Math.random() * 100 );
         console.log("Clicked to view "+ style);
         console.log(imgIndex);
     }
