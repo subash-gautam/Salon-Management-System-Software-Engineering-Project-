@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create JSON File with JavaScript</title>
+</head>
+<body>
+    <button id="downloadButton">Download JSON File</button>
+
+    <script>
+        // Sample data as a JavaScript object
+        const jsonData = {
+            "name": "John Doe",
+            "age": 30,
+            "email": "john@example.com",
+            "isSubscribed": true
+        };
+
+        // Convert the JavaScript object to a JSON string
+        const jsonString = JSON.stringify(jsonData, null, 2);
+
+        // Function to download JSON file
+        function downloadJSONFile(filename, data) {
+            const blob = new Blob([data], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            
+            // Cleanup
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Trigger the download on button click
+        document.getElementById("downloadButton").addEventListener("click", function() {
+            downloadJSONFile("data.json", jsonString);
+        });
+    </script>
+</body>
+</html>

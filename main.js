@@ -61,16 +61,18 @@
         booking();
     });
     document.getElementById('barberInfo').addEventListener('click', function(){
-        main.innerHTML = `<div id = "barberDetail"><h1>Barber Introduction</h1>
-        <h2>Name: Nabin Kumar Sah</h2>
-        <h2>Address: Pokhara - 16, Lamachaur, Seti Khola ko bagar mai</h2>
-        <h2>Salon Address: in front of WRC</h2>
-        <h2>Experience: 12 years only</h2>
+        main.innerHTML = `<div id="barberDetail">
+        <div class="barberIntroduction">
+            <h1>Barber Introduction</h1>
+            <h2>Name: Nabin Kumar Sah</h2>
+            <h2>Address: Pokhara - 16, Lamachaur, Seti Khola ko bagar mai</h2>
+            <h2>Salon Address: in front of WRC</h2>
+            <h2>Experience: 12 years only</h2>
         </div>
-        <img src="images/barber.jpg" id = "barberImg" alt="barber">`;
+        <img src="images/barber.jpg" id="barberImg" alt="barber">
+    </div>`;
     });
     document.querySelectorAll('.thumbnail-image')[0].addEventListener('click', function(){
-        console.log("Ghanta");
         styleList(0);
     });
     document.querySelectorAll('.thumbnail-image')[1].addEventListener('click', function(){
@@ -138,11 +140,45 @@
             <tbody></tbody>
         </table>`;
     }
-    function styleList(style){
+    function styleList(Style){
         // list of different styles(hair(basic/special) or beard) to show as choosen by user
-        var imgIndexList = [];
-        var imgIndex = Math.floor( Math.random() * 100 );
-        console.log("Clicked to view "+ style);
-        console.log(imgIndex);
+        var imgIndexList = [], style;
+        if(Style == 0)
+            style = 'simple';
+        if(Style == 1)
+            style = 'special';
+        if(Style == 2)
+            style = 'beard';
+        // count styles
+        let count = 0;
+        for(let i=1; i<10; i++){  
+            const newImgToCheck = new Image();
+            newImgToCheck.src = `images/${style}${i}.jpg`;
+            newImgToCheck.onload = function() {
+                count+=1;
+            }
+            newImgToCheck.onerror = function(e){
+                e.preventDefault();
+                console.error("No such image.");
+            }
+        }
+        setTimeout(function(){
+            console.log(`There are ${count} ${style} styles.`);
+            var imgIndex = Math.floor( Math.random() * count ) + 1;
+            document.getElementById('demos').innerHTML = " ";
+            for(let i=0; i<count; i++){{
+                document.getElementById('demos').innerHTML += `<div class="thumbnail">
+                <div class="thumbnail-image">
+                    <img src="images/${style}${i + 1}.jpg" alt="">
+                </div>
+                <div class="thumbnail-content">
+                    <h3>${style.toUpperCase()} Hair Style${i + 1}</h3>
+                </div>
+                </div>`;
+                if(i%3 == 0){
+                    document.getElementById('demos').innerHTML += "<br>";
+                }
+            }}
+        },10);
     }
 })();

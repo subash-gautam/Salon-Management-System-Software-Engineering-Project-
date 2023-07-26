@@ -129,3 +129,16 @@ img{
     width:100%;
     height: auto;
 }
+#barberDetail {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.barberIntroduction {
+    flex: 1;
+}
+
+#barberImg {
+    width: 50%;
+}
