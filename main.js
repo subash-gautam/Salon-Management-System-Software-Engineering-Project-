@@ -79,7 +79,7 @@
     document.querySelectorAll('.thumbnail-image')[2].addEventListener('click', function(){
         styleList(2);
     });
-    
+
     // Function Haru Yata
     function barberLogin(){
         main.innerHTML = `
