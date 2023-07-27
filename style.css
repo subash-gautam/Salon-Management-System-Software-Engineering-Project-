@@ -92,6 +92,7 @@ td {
 }
 .thumbnail {
     flex: 1;
+    min-width: 30%;
     position: relative;
     border-radius: 20px;
     margin: 10px;

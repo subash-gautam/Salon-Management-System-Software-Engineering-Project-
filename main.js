@@ -2,14 +2,13 @@
 (function everything(){
     "use strict";
     
-// variable declaration
+    // variable declaration
     const demos = document.getElementById('demos');
     const logInPannel = document.getElementById('logInPannel');
     var main = document.getElementsByTagName('main')[0];
     const admin = 'barber', passkey = 'password';
     const incorrect = document.getElementById('incorrect');
     var username, password;
-    document.getElementById('header').innerHTML = `<img src="images/Home.png" alt="Home" id="homeIcon"><h1>Salon Management System</h1>`;
     main.innerHTML = `<section id="demos">
         <div class="thumbnail">
             <div class="thumbnail-image">
@@ -21,7 +20,7 @@
         </div>
         <div class="thumbnail">
             <div class="thumbnail-image">
-                <img src="images/special1.jpg" alt="">
+                <img src="images/special2.jpg" alt="">
             </div>
             <div class="thumbnail-content">
                 <h3>Special Styles</h3>
@@ -42,15 +41,16 @@
         <button id="barberInfo">About Barber</button>
         <button id="barberLogin">Barber Login</button></div>
     </section>`;
+
     document.getElementById('logInPannel').innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
     <button id="userLogin">Log In</button>
     <button id="barberInfo">About Barber</button>
     <button id="barberLogin">Barber Login</button></div>`;
-
+    
     document.getElementById('homeIcon').addEventListener('click', function(){
-        everything();
-        console.log("Home button clicked.");
-    });
+                console.log("Home button clicked.");
+                everything();
+            });
     document.getElementById('barberLogin').addEventListener('click', function(){
         barberLogin();
     });  
@@ -175,10 +175,7 @@
                     <h3>${style.toUpperCase()} Hair Style${i + 1}</h3>
                 </div>
                 </div>`;
-                if(i%3 == 0){
-                    document.getElementById('demos').innerHTML += "<br>";
-                }
             }}
-        },10);
+        },100);
     }
 })();
