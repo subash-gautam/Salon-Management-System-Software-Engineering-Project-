@@ -9,57 +9,33 @@
     const admin = 'barber', passkey = 'password';
     const incorrect = document.getElementById('incorrect');
     var username, password;
-    main.innerHTML = `<section id="demos">
-        <div class="thumbnail">
-            <div class="thumbnail-image">
-                <img src="images/simple1.jpg" alt="">
-            </div>
-            <div class="thumbnail-content">
-                <h3>Simple Hair Styles</h3>
-            </div>
-        </div>
-        <div class="thumbnail">
-            <div class="thumbnail-image">
-                <img src="images/special2.jpg" alt="">
-            </div>
-            <div class="thumbnail-content">
-                <h3>Special Styles</h3>
-            </div>
-        </div>
-        <div class="thumbnail">
-            <div class="thumbnail-image">
-                <img src="images/beard1.jpg" alt="">
-            </div>
-            <div class="thumbnail-content">
-                <h3>Beard Styles</h3>
-            </div>
-        </div>
-    </section>
-    <section id="logInPannel">
-        <div id="logInDiv"><button id="booking">Book Now</button>
-        <button id="userLogin">Log In</button>
-        <button id="barberInfo">About Barber</button>
-        <button id="barberLogin">Barber Login</button></div>
-    </section>`;
+
+    insideMain();
+    postClickHandler();
 
     document.getElementById('logInPannel').innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
     <button id="userLogin">Log In</button>
     <button id="barberInfo">About Barber</button>
     <button id="barberLogin">Barber Login</button></div>`;
-    
+
     document.getElementById('homeIcon').addEventListener('click', function(){
                 console.log("Home button clicked.");
-                everything();
+                insideMain();
+                postClickHandler();
             });
+
     document.getElementById('barberLogin').addEventListener('click', function(){
         barberLogin();
-    });  
+    });
+
     document.getElementById('userLogin').addEventListener('click', function(){
         login();
-    });  
+    });
+
     document.getElementById('booking').addEventListener('click', function(){
         booking();
     });
+
     document.getElementById('barberInfo').addEventListener('click', function(){
         main.innerHTML = `<div id="barberDetail">
         <div class="barberIntroduction">
@@ -71,15 +47,6 @@
         </div>
         <img src="images/barber.jpg" id="barberImg" alt="barber">
     </div>`;
-    });
-    document.querySelectorAll('.thumbnail-image')[0].addEventListener('click', function(){
-        styleList(0);
-    });
-    document.querySelectorAll('.thumbnail-image')[1].addEventListener('click', function(){
-        styleList(1);
-    });
-    document.querySelectorAll('.thumbnail-image')[2].addEventListener('click', function(){
-        styleList(2);
     });
 
     // Function Haru Yata
@@ -103,12 +70,15 @@
                 adminLoginConformation();
             });
     }
+
     function login(){
         console.log("This is user login function");
     }
+
     function booking(){
         console.log("This is booking function");
     }
+
     function adminLoginConformation(){
         console.log("User name : "+ username + "\nPassword: "+ password);
         if(1 || admin == username){ 
@@ -125,6 +95,7 @@
                 document.getElementById('submit').innerHTML = 'Retry';
         }
     }
+
     function adminPannel(){
         var pannel = document.getElementById('adminPannel');
         pannel.innerHTML = `<table>
@@ -140,6 +111,56 @@
             <tbody></tbody>
         </table>`;
     }
+
+    function insideMain(){
+        main.innerHTML = `<section id="demos">
+            <div class="thumbnail">
+                <div class="thumbnail-image">
+                    <img src="images/simple1.jpg" alt="">
+                </div>
+                <div class="thumbnail-content">
+                    <h3>Simple Hair Styles</h3>
+                </div>
+            </div>
+            <div class="thumbnail">
+                <div class="thumbnail-image">
+                    <img src="images/special2.jpg" alt="">
+                </div>
+                <div class="thumbnail-content">
+                    <h3>Special Styles</h3>
+                </div>
+            </div>
+            <div class="thumbnail">
+                <div class="thumbnail-image">
+                    <img src="images/beard1.jpg" alt="">
+                </div>
+                <div class="thumbnail-content">
+                    <h3>Beard Styles</h3>
+                </div>
+            </div>
+        </section>
+        <section id="logInPannel">
+            <div id="logInDiv"><button id="booking">Book Now</button>
+            <button id="userLogin">Log In</button>
+            <button id="barberInfo">About Barber</button>
+            <button id="barberLogin">Barber Login</button></div>
+        </section>`;
+    }
+
+    function postClickHandler(){
+        document.querySelectorAll('.thumbnail-image')[0].addEventListener('click', function(){
+            styleList(0);
+        });
+    
+        document.querySelectorAll('.thumbnail-image')[1].addEventListener('click', function(){
+            styleList(1);
+        });
+    
+        document.querySelectorAll('.thumbnail-image')[2].addEventListener('click', function(){
+            styleList(2);
+        });
+    }
+
     function styleList(Style){
         // list of different styles(hair(basic/special) or beard) to show as choosen by user
         var imgIndexList = [], style;
