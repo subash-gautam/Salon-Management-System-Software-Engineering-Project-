@@ -11,7 +11,7 @@
     var username, password;
 
     insideMain();
-    postClickHandler();
+    homePageClickHandler();
 
     document.getElementById('logInPannel').innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
     <button id="userLogin">Log In</button>
@@ -19,34 +19,9 @@
     <button id="barberLogin">Barber Login</button></div>`;
 
     document.getElementById('homeIcon').addEventListener('click', function(){
-                console.log("Home button clicked.");
-                insideMain();
-                postClickHandler();
-            });
-
-    document.getElementById('barberLogin').addEventListener('click', function(){
-        barberLogin();
-    });
-
-    document.getElementById('userLogin').addEventListener('click', function(){
-        login();
-    });
-
-    document.getElementById('booking').addEventListener('click', function(){
-        booking();
-    });
-
-    document.getElementById('barberInfo').addEventListener('click', function(){
-        main.innerHTML = `<div id="barberDetail">
-        <div class="barberIntroduction">
-            <h1>Barber Introduction</h1>
-            <h2>Name: Nabin Kumar Sah</h2>
-            <h2>Address: Pokhara - 16, Lamachaur, Seti Khola ko bagar mai</h2>
-            <h2>Salon Address: in front of WRC</h2>
-            <h2>Experience: 12 years only</h2>
-        </div>
-        <img src="images/barber.jpg" id="barberImg" alt="barber">
-    </div>`;
+        console.log("Home button clicked.");
+        insideMain();
+        homePageClickHandler();
     });
 
     // Function Haru Yata
@@ -147,7 +122,7 @@
         </section>`;
     }
 
-    function postClickHandler(){
+    function homePageClickHandler(){
         document.querySelectorAll('.thumbnail-image')[0].addEventListener('click', function(){
             styleList(0);
         });
@@ -159,8 +134,33 @@
         document.querySelectorAll('.thumbnail-image')[2].addEventListener('click', function(){
             styleList(2);
         });
-    }
 
+        document.getElementById('barberLogin').addEventListener('click', function(){
+            barberLogin();
+        });
+    
+        document.getElementById('userLogin').addEventListener('click', function(){
+            login();
+        });
+    
+        document.getElementById('booking').addEventListener('click', function(){
+            booking();
+        });
+    
+        document.getElementById('barberInfo').addEventListener('click', function(){
+            main.innerHTML = `<div id="barberDetail">
+                <div class="barberIntroduction">
+                    <h1>Barber Introduction</h1>
+                    <h2>Name: Nabin Kumar Sah</h2>
+                    <h2>Address: Pokhara - 16, Lamachaur, Seti Khola ko bagar mai</h2>
+                    <h2>Salon Address: in front of WRC</h2>
+                    <h2>Experience: 12 years only</h2>
+                </div>
+                <img src="images/barber.jpg" id="barberImg" alt="barber">
+            </div>`;
+        });
+    }
+    
     function styleList(Style){
         // list of different styles(hair(basic/special) or beard) to show as choosen by user
         var imgIndexList = [], style;
@@ -187,16 +187,29 @@
             console.log(`There are ${count} ${style} styles.`);
             var imgIndex = Math.floor( Math.random() * count ) + 1;
             document.getElementById('demos').innerHTML = " ";
-            for(let i=0; i<count; i++){{
+            for(let i=0; i<count; i++){
                 document.getElementById('demos').innerHTML += `<div class="thumbnail">
                 <div class="thumbnail-image">
                     <img src="images/${style}${i + 1}.jpg" alt="">
                 </div>
                 <div class="thumbnail-content">
                     <h3>${style.toUpperCase()} Hair Style${i + 1}</h3>
+                    <button class="applyBtn">Select This</button>
                 </div>
                 </div>`;
-            }}
-        },100);
+            }
+
+            // Select Buttion Click Handler
+            for(let i=0; i<count; i++){
+                document.querySelectorAll('.applyBtn')[i].addEventListener('click', function(){
+                    registration(style, i);
+                });
+            }
+        },200);
+    }
+
+    function registration(style, index){
+        console.log(style+ " "+ index);
+        main.innerHTML = " ";
     }
 })();

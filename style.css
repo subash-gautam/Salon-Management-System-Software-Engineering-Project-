@@ -74,6 +74,7 @@ button {
 button:hover{
     cursor: pointer;
 }
+
 /* Admin Table Css */
 table thead td, table tbody td {
     border: 1px solid black;
