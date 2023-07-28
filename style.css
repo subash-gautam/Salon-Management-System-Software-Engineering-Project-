@@ -3,27 +3,27 @@ body {
     padding: 0px;
     background: rgb(221, 187, 255);
 }
-header{
+header {
     text-align: center;
 }
-header div{
+header div {
     background-color: aqua;
     display: inline-block;
     align-items: center;
     padding: 0 15px;
 }
-header img, header h1{
+header img, header h1 {
     display: inline;
     width: 50px;
     margin: 5px;
 }
-footer{
+footer {
     margin: 0;
     padding: 10px;
     text-align: center;
     background-color: blueviolet;
 }
-footer p{
+footer p {
     margin: 0;
     font-size: 20px;
     color: #fff;
@@ -71,7 +71,7 @@ button {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
 }
-button:hover{
+button:hover {
     cursor: pointer;
 }
 
@@ -87,7 +87,7 @@ td {
     text-align: center;
 }
 /* Demos style */
-#demos{
+#demos {
     display: flex;
     border-radius: 20px;
 }
@@ -99,7 +99,7 @@ td {
     margin: 10px;
     background-color: bisque;
 }
-.thumbnail:last-child{
+.thumbnail:last-child {
     margin-right: 0;
 }
 .thumbnail-image {
