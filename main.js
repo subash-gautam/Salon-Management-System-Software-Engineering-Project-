@@ -43,6 +43,7 @@
 
     function login() {
         console.log("This is user login function");
+        fetchData();
     }
 
     function booking() {
@@ -258,5 +259,15 @@
             <input type="text" id = "email">
             <button type="submit" id="submitForToken" >Apply for Token</button>
         </form>`;
+    }
+
+    function fetchData() {
+        console.log("Fetch Data Function running")
+        fetch("./data.json")
+            .then(response => response.json())
+            .then(data => function () {
+                console.log("Code Working" + data.name + data.cut);
+            })
+            .catch(error => console.error("Error fetching JSON:", error));
     }
 })();

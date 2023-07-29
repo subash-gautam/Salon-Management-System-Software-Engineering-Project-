@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JSON File Example</title>
+</head>
+
+<body>
+    <script>
+        fetch('data.json')
+            .then((response) => response.json())
+            .then(data => showdata(data))
+
+        function showdata(data) {
+            console.table(data.desh);
+        }
+    </script>
+</body>
+
+</html>
