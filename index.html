@@ -20,9 +20,31 @@
     </main>
     <footer>
         <p>&copy; Team NS : Software Engineering Project</p>
+        <div id="test"></div>
     </footer>
+    <script type="module">
+        import data from './data.json' assert{type: 'json'};
+        console.log(data);
+        data.fname = "Rabin";
+        data.age = 15;
+        console.log(data);
+
+        // var fs = require('fs');
+
+        // // Convert the JavaScript object to a JSON string
+        // const jsonString = JSON.stringify(data, null, 2); // null and 2 for formatting
+
+        // // Write the JSON string to a file (data.json)
+        // data.writeFile('./data.json', jsonString, 'utf8', (err) => {
+        //     if (err) {
+        //         console.error('Error writing file:', err);
+        //     } else {
+        //         console.log('Data has been written to data.json successfully!');
+        //     }
+        // });
+
+    </script>
     <script src="main.js"></script>
-    <script src="./backEnd.js"></script>
 </body>
 
 </html>

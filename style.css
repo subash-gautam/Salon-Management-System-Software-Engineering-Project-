@@ -3,31 +3,38 @@ body {
     padding: 0px;
     background: rgb(221, 187, 255);
 }
+
 header {
     text-align: center;
 }
+
 header div {
     background-color: aqua;
     display: inline-block;
     align-items: center;
     padding: 0 15px;
 }
-header img, header h1 {
+
+header img,
+header h1 {
     display: inline;
     width: 50px;
     margin: 5px;
 }
+
 footer {
     margin: 0;
     padding: 10px;
     text-align: center;
     background-color: blueviolet;
 }
+
 footer p {
     margin: 0;
     font-size: 20px;
     color: #fff;
 }
+
 main {
     margin: 10px;
     padding: 10px;
@@ -35,29 +42,36 @@ main {
     border-radius: 10px;
     background-color: yellowgreen;
 }
+
 #logInDiv {
     display: flex;
     justify-content: center;
     align-items: center;
     white-space: 50px;
 }
+
 #logInDiv button {
     margin: 0px 20px;
 }
+
 body {
     margin: 0;
 }
+
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 label {
     margin-top: 10px;
 }
+
 input {
     margin-top: 5px;
 }
+
 button {
     margin: 10px;
     padding: 4px 10px;
@@ -71,26 +85,31 @@ button {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
 }
+
 button:hover {
     cursor: pointer;
 }
 
 /* Admin Table Css */
-table thead td, table tbody td {
+table thead td,
+table tbody td {
     border: 1px solid black;
     border-collapse: collapse;
     align-items: center;
 }
+
 td {
     padding: 5px;
     min-width: 100px;
     text-align: center;
 }
+
 /* Demos style */
 #demos {
     display: flex;
     border-radius: 20px;
 }
+
 .thumbnail {
     flex: 1;
     min-width: 30%;
@@ -99,15 +118,18 @@ td {
     margin: 10px;
     background-color: bisque;
 }
+
 .thumbnail:last-child {
     margin-right: 0;
 }
+
 .thumbnail-image {
     background-size: cover;
     background-position: center;
     opacity: 1;
     border-radius: 20px;
 }
+
 .thumbnail-content {
     position: absolute;
     top: 75%;
@@ -117,20 +139,26 @@ td {
     text-align: center;
     padding: 20px;
 }
-.thumbnail:hover .thumbnail-content, .thumbnail:hover .thumbnail-image{
+
+.thumbnail:hover .thumbnail-content,
+.thumbnail:hover .thumbnail-image {
     cursor: pointer;
     opacity: 0.75;
     transition: opacity 1.5s ease;
-    -ms-zoom-animation:initial;
+    -ms-zoom-animation: initial;
 }
-.thumbnail-content h3, .thumbnail-content p {
+
+.thumbnail-content h3,
+.thumbnail-content p {
     margin: 0;
 }
-img{
+
+img {
     border-radius: 20px;
-    width:100%;
+    width: 100%;
     height: auto;
 }
+
 #barberDetail {
     display: flex;
     align-items: center;

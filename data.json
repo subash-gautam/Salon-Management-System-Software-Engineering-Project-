@@ -1,12 +1,5 @@
 {
-    "desh": [
-        {
-            "name": "nepal",
-            "capital": "kathmandu"
-        },
-        {
-            "name": "india",
-            "capital": "new delhi"
-        }
-    ]
+    "fname": "Subash",
+    "lname": "gautam",
+    "age": 20
 }
