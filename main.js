@@ -41,7 +41,7 @@
     }
 
     function login() {
-        fetchData();
+        console.log("Login function is called.");
     }
 
     function booking() {
@@ -50,7 +50,7 @@
         for (let i = 0; i < 2; i++) {
             main.innerHTML += `<div class="thumbnail simpleDisplay">
                 <div class="thumbnail-image">
-                    <img src="images/simple${i + 1}.jpg" alt="">
+                    <img src="images/simple${i + 1}.jpg" class="imgData" data-style="simple" data-index="${i}">
                 </div>
                 <div class="thumbnail-content">
                     <h3>Simple Hair Style${i + 1}</h3>
@@ -62,7 +62,7 @@
         for (let i = 0; i < 7; i++) {
             main.innerHTML += `<div class="thumbnail specialDisplay">
                 <div class="thumbnail-image">
-                    <img src="images/special${i + 1}.jpg" alt="">
+                    <img src="images/special${i + 1}.jpg" class="imgData" data-style="special" data-index="${i}">
                 </div>
                 <div class="thumbnail-content">
                     <h3>Special Hair Style${i + 1}</h3>
@@ -74,7 +74,7 @@
         for (let i = 0; i < 3; i++) {
             main.innerHTML += `<div class="thumbnail beardDisplay">
                 <div class="thumbnail-image">
-                    <img src="images/beard${i + 1}.jpg" alt="">
+                    <img src="images/beard${i + 1}.jpg"> class="imgData" data-style="beard" data-index="${i}"
                 </div>
                 <div class="thumbnail-content">
                     <h3>Beard Style${i + 1}</h3>
@@ -84,7 +84,9 @@
         }
         for (let i = 0; i < 12; i++) {
             document.querySelectorAll('.applyBtn')[i].addEventListener('click', function () {
-                registration();
+                let style = document.querySelectorAll('.imgData')[i].getAttribute('data-style');
+                let index = document.querySelectorAll('.imgData')[i].getAttribute('data-index');
+                registration(style, index);
             });
         }
     }
@@ -253,19 +255,12 @@
         main.innerHTML = `<form>
             <label for="name">Name: </label>
             <input type="text" id="name">
-            <label for="email">Enter email or phone number: </label>
+            <label for="email">Enter phone number: </label>
             <input type="text" id = "email">
             <button type="submit" id="submitForToken" >Apply for Token</button>
         </form>`;
-    }
+        document.getElementById('submitForToken').addEventListener('click', function () {
 
-    function fetchData() {
-        // fetch("./data.json")
-        //     .then(response => response.json())
-        //     .then(data => function () {
-        //         console.log("Code Working" + data.name + data.cut);
-        //     })
-        //     .catch(error => console.error("Error fetching JSON:", error));
-        console.log("Fetch Data Function within login function")
+        });
     }
 })();
