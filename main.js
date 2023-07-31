@@ -244,7 +244,7 @@
             // Select Buttion Click Handler
             for (let i = 0; i < count; i++) {
                 document.querySelectorAll('.applyBtn')[i].addEventListener('click', function () {
-                    registration(style, i);
+                    registration(style, i+1);
                 });
             }
         }, 200);
@@ -257,7 +257,7 @@
             <input type="text" id="name">
             <label for="email">Enter phone number: </label>
             <input type="text" id = "email">
-            <label>Your selected style is</label>
+            <label>Your selected style is ${style.toUpperCase()} ${index}</label>
             <img src="images/${style}${index}.jpg" id="confirmStyleImg" alt"${style} ${index} ">
             <button id="changeStyle">Change</button>
             <button type="submit" id="submitForToken" >Apply for Token</button>
@@ -265,6 +265,10 @@
         document.getElementById('submitForToken').addEventListener('click', function (evt) {
             evt.preventDefault();
             console.log('Token to be submitted.');
+        });
+        document.getElementById('changeStyle').addEventListener('click', function(evt){
+            evt.preventDefault();
+            console.log('Wanna change style');
         });
     }
 })();
