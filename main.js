@@ -50,7 +50,7 @@
         for (let i = 0; i < 2; i++) {
             main.innerHTML += `<div class="thumbnail simpleDisplay">
                 <div class="thumbnail-image">
-                    <img src="images/simple${i + 1}.jpg" class="imgData" data-style="simple" data-index="${i}">
+                    <img src="images/simple${i + 1}.jpg" class="imgData" data-style="simple" data-index="${i+1}">
                 </div>
                 <div class="thumbnail-content">
                     <h3>Simple Hair Style${i + 1}</h3>
@@ -62,7 +62,7 @@
         for (let i = 0; i < 7; i++) {
             main.innerHTML += `<div class="thumbnail specialDisplay">
                 <div class="thumbnail-image">
-                    <img src="images/special${i + 1}.jpg" class="imgData" data-style="special" data-index="${i}">
+                    <img src="images/special${i + 1}.jpg" class="imgData" data-style="special" data-index="${i+1}">
                 </div>
                 <div class="thumbnail-content">
                     <h3>Special Hair Style${i + 1}</h3>
@@ -74,7 +74,7 @@
         for (let i = 0; i < 3; i++) {
             main.innerHTML += `<div class="thumbnail beardDisplay">
                 <div class="thumbnail-image">
-                    <img src="images/beard${i + 1}.jpg"> class="imgData" data-style="beard" data-index="${i}"
+                    <img src="images/beard${i + 1}.jpg"> class="imgData" data-style="beard" data-index="${i+1}"
                 </div>
                 <div class="thumbnail-content">
                     <h3>Beard Style${i + 1}</h3>
@@ -257,10 +257,14 @@
             <input type="text" id="name">
             <label for="email">Enter phone number: </label>
             <input type="text" id = "email">
+            <label>Your selected style is</label>
+            <img src="images/${style}${index}.jpg" id="confirmStyleImg" alt"${style} ${index} ">
+            <button id="changeStyle">Change</button>
             <button type="submit" id="submitForToken" >Apply for Token</button>
         </form>`;
-        document.getElementById('submitForToken').addEventListener('click', function () {
-
+        document.getElementById('submitForToken').addEventListener('click', function (evt) {
+            evt.preventDefault();
+            console.log('Token to be submitted.');
         });
     }
 })();
