@@ -1,176 +1,179 @@
+/** @format */
+
 body {
-    margin: 0px;
-    padding: 0px;
-    background: rgb(221, 187, 255);
+	margin: 0px;
+	padding: 0px;
+	background: rgb(221, 187, 255);
 }
 
 header {
-    text-align: center;
+	text-align: center;
 }
 
 header div {
-    background-color: aqua;
-    display: inline-block;
-    align-items: center;
-    padding: 0 15px;
+	background-color: aqua;
+	display: inline-block;
+	align-items: center;
+	padding: 0 15px;
 }
 
 header img,
 header h1 {
-    display: inline;
-    width: 50px;
-    margin: 5px;
+	display: inline;
+	width: 50px;
+	margin: 5px;
 }
 
 footer {
-    margin: 0;
-    padding: 10px;
-    text-align: center;
-    background-color: blueviolet;
+	margin: 0;
+	padding: 10px;
+	text-align: center;
+	background-color: blueviolet;
 }
 
 footer p {
-    margin: 0;
-    font-size: 20px;
-    color: #fff;
+	margin: 0;
+	font-size: 20px;
+	color: #fff;
 }
 
 main {
-    margin: 10px;
-    padding: 10px;
-    height: 100%;
-    border-radius: 10px;
-    background-color: yellowgreen;
+	margin: 10px;
+	padding: 10px;
+	height: 100%;
+	border-radius: 10px;
+	background-color: yellowgreen;
 }
 
 #logInDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    white-space: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	white-space: 50px;
 }
 
 #logInDiv button {
-    margin: 0px 20px;
+	margin: 0px 20px;
 }
 
 body {
-    margin: 0;
+	margin: 0;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 label {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 input {
-    margin-top: 5px;
+	margin-top: 5px;
 }
 
 button {
-    margin: 10px;
-    padding: 4px 10px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #332fb7;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
+	margin: 10px;
+	padding: 4px 10px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #fff;
+	background-color: #332fb7;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	transition: background-color 0.3s ease;
 }
 
 button:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 /* Admin Table Css */
 table thead td,
 table tbody td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    align-items: center;
+	border: 1px solid black;
+	border-collapse: collapse;
+	align-items: center;
 }
 
 td {
-    padding: 5px;
-    min-width: 100px;
-    text-align: center;
+	padding: 5px;
+	min-width: 100px;
+	text-align: center;
 }
 
 /* Demos style */
 #demos {
-    display: flex;
-    border-radius: 20px;
+	display: flex;
+	border-radius: 20px;
 }
 
 .thumbnail {
-    flex: 1;
-    min-width: 30%;
-    position: relative;
-    border-radius: 20px;
-    margin: 10px;
-    background-color: bisque;
+	flex: 1;
+	min-width: 30%;
+	position: relative;
+	border-radius: 20px;
+	margin: 10px;
+	background-color: bisque;
 }
 
 .thumbnail:last-child {
-    margin-right: 0;
+	margin-right: 0;
 }
 
 .thumbnail-image {
-    background-size: cover;
-    background-position: center;
-    opacity: 1;
-    border-radius: 20px;
+	background-size: cover;
+	background-position: center;
+	opacity: 1;
+	border-radius: 20px;
 }
 
 .thumbnail-content {
-    position: absolute;
-    top: 75%;
-    height: 40px;
-    width: 100%;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
+	position: absolute;
+	top: 75%;
+	height: 40px;
+	width: 100%;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
 }
 
 .thumbnail:hover .thumbnail-content,
 .thumbnail:hover .thumbnail-image {
-    cursor: pointer;
-    opacity: 0.75;
-    transition: opacity 1.5s ease;
-    -ms-zoom-animation: initial;
+	cursor: pointer;
+	opacity: 0.75;
+	transition: opacity 1.5s ease;
+	-ms-zoom-animation: initial;
 }
 
 .thumbnail-content h3,
 .thumbnail-content p {
-    margin: 0;
+	margin: 0;
 }
 
 img {
-    border-radius: 20px;
-    width: 100%;
-    height: auto;
-}#confirmStyleImg {
-    max-width: 200px;
+	border-radius: 20px;
+	width: 100%;
+	height: auto;
+}
+#confirmStyleImg {
+	max-width: 200px;
 }
 
 #barberDetail {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+	display: flex;
+	align-items: center;
+	gap: 20px;
 }
 
 .barberIntroduction {
-    flex: 1;
+	flex: 1;
 }
 
 #barberImg {
-    width: 50%;
+	width: 50%;
 }
