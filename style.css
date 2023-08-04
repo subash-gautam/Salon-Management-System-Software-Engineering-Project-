@@ -1,5 +1,4 @@
 /** @format */
-
 body {
 	margin: 0px;
 	padding: 0px;
@@ -93,16 +92,18 @@ button:hover {
 }
 
 /* Admin Table Css */
-table thead td,
-table tbody td {
+table {
+	overflow: scroll;
+}
+table tr td,
+table tbody tr td {
 	border: 1px solid black;
 	border-collapse: collapse;
 	align-items: center;
-}
-
-td {
+	background-color: rgb(167, 167, 255);
 	padding: 5px;
-	min-width: 100px;
+	width: 14%;
+	min-width: 125px;
 	text-align: center;
 }
 

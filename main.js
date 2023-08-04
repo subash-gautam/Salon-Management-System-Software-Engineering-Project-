@@ -1,22 +1,22 @@
 /** @format */
-
-// IIFE
-(function everything() {
+(function () {
 	"use strict";
-
 	// variable declaration
 	const demos = document.getElementById("demos");
 	const logInPannel = document.getElementById("logInPannel");
 	var main = document.getElementsByTagName("main")[0];
 	const admin = "barber",
-		passkey = "password";
-	var username, password;
+		passkey = "password",
+		period = 30; //average time for a haircut.
+	var username,
+		password,
+		phone,
+		detail = {};
 
 	insideMain();
 	homePageClickHandler();
 
 	document.getElementById("homeIcon").addEventListener("click", function () {
-		console.log("Home button clicked.");
 		insideMain();
 		homePageClickHandler();
 	});
@@ -41,10 +41,6 @@
 			password = document.querySelector("#password").value;
 			adminLoginConformation();
 		});
-	}
-
-	function login() {
-		console.log("Login function is called.");
 	}
 
 	function booking() {
@@ -85,7 +81,7 @@
                 </div>
             </div>`;
 		}
-		for (let i = 0; i < 12; i++) {
+		for (let i = 0; i < 20; i++) {
 			document.querySelectorAll(".applyBtn")[i].addEventListener("click", function () {
 				let style = document.querySelectorAll(".imgData")[i].getAttribute("data-style");
 				let index = document.querySelectorAll(".imgData")[i].getAttribute("data-index");
@@ -113,17 +109,30 @@
 	function adminPannel() {
 		var pannel = document.getElementById("adminPannel");
 		pannel.innerHTML = `<table>
-            <thead>
-                <td id = "sn" >Queue number</td>
-                <td id = "nameOnList" >Name</td>
-                <td id = "emailOnList" >Email(/phone)</td>
+            <tr>
+				<td id = "phoneOnList" >Phone Number</td>
+				<td id = "nameOnList" >Name</td>
                 <td id = "hairStyleOnList" >Hair Style</td>
+                <td id = "timeChoosen" >Time</td>
+                <td id = "payStatus" >Payment Status</td>
                 <td id = "queueStatus" >Status</td>
-                <td>Payment Status</td>
-                <td id = "queueAction">Action</td>
-            </thead>
-            <tbody></tbody>
-        </table>`;
+                <td id = "queueAction"><button id="refresh">&#10227;</button></td>
+            </tr>
+			</table>`;
+		for (let i = 0; i < localStorage.length; i++) {
+			let pn = localStorage.key(i);
+			let dtl = JSON.parse(localStorage.getItem(localStorage.key(i)));
+			console.log(`${pn}` + dtl);
+			pannel.innerHTML += `<table><tr>
+			<td class = "phoneOnList" >${pn}</td>
+			<td class = "nameOnList" >${dtl.name}</td>
+			<td class = "hairStyleOnList" >		<img src=images/${dtl.style}.jpg alt="Fail to load">	</td>
+			<td class = "timeChoosen" >${dtl.time}</td>
+			<td class = "payStatus" >${dtl.payStat}</td>
+			<td class = "queueStatus" >${dtl.status}</td>
+			<td class = "queueAction" > <button class="action"> Action </button> </td>
+			</tr></table>`;
+		}
 	}
 
 	function insideMain() {
@@ -222,7 +231,7 @@
 			};
 			newImgToCheck.onerror = function (e) {
 				e.preventDefault();
-				console.error("No such image.");
+				// break;
 			};
 		}
 		setTimeout(function () {
@@ -247,28 +256,95 @@
 					registration(style, i + 1);
 				});
 			}
-		}, 200);
+		}, 500);
 	}
 
 	function registration(style, index) {
 		console.log(style + " " + index);
+		if (!(detail.name || phone))
+			(detail.name = ""), (phone = ""), (detail.time = `${new Date().getHours()}:${new Date().getMinutes()}`); //to avoid undefined in inputs fields
 		main.innerHTML = `<form>
             <label for="name">Name: </label>
-            <input type="text" id="name">
-            <label for="email">Enter phone number: </label>
-            <input type="text" id = "email">
+            <input type="text" id="name" value = "${detail.name}">
+            <label for="phone">Enter phone number: </label>
+            <input type="text" id = "phone" value = "${phone}">
             <label>Your selected style is ${style.toUpperCase()} ${index}</label>
             <img src="images/${style}${index}.jpg" id="confirmStyleImg" alt"${style} ${index} ">
             <button id="changeStyle">Change</button>
+			<label for"time">Select prefered time: </label>
+			<input type="time" id="time" value="${detail.time}" step="${period * 60000}">
             <button type="submit" id="submitForToken" >Apply for Token</button>
         </form>`;
 		document.getElementById("submitForToken").addEventListener("click", function (evt) {
 			evt.preventDefault();
-			console.log("Token to be submitted.");
+			detail.name = document.getElementById("name").value;
+			phone = document.getElementById("phone").value;
+			detail.style = `${style}${index}`;
+			detail.time = `${document.getElementById("time").value}`;
+			console.log(detail);
+			console.log(phone);
+			saveData();
 		});
 		document.getElementById("changeStyle").addEventListener("click", function (evt) {
 			evt.preventDefault();
-			console.log("Wanna change style");
+			detail.name = document.getElementById("name").value;
+			phone = document.getElementById("phone").value;
+			booking();
 		});
+	}
+
+	function login(justRegistered = 0) {
+		if (!justRegistered) {
+			main.innerHTML = `<form>
+            <label for="phone">Enter phone number: </label>
+            <input type="text" id = "phone" placeholder = "Registered during registration"></input>
+			<button for="checkPhone" id='checkPhone'>Next</buttion>
+			</form>`;
+			document.getElementById("checkPhone").addEventListener("click", function () {
+				let enteredPhone = document.getElementById("phone").value;
+				console.log(enteredPhone);
+				detail = JSON.parse(localStorage.getItem(enteredPhone));
+				console.log(detail);
+				if (detail) {
+					phone = enteredPhone;
+					main.innerHTML = `<form>
+					<label for="phone">Enter phone number: </label>
+					<input type="text" id = "phone" placeholder = "Registered during registration"></input>
+					<button for="checkPhone" id='checkPhone'>Next</buttion>
+					</form>`;
+					display();
+				} else {
+					alert("Phone Number not registered.");
+					login(0);
+				}
+			});
+			function display() {
+				main.innerHTML = `<h2>Name: ${detail.name}.</h2>
+				<h2>Phone: ${phone}</h2>
+				<h2>Style: </h2>
+				<img src="images/${detail.style}.jpg" alt="Image Processing Error" style="max-width: 100px;">
+				<h2>Time: ${detail.time}</h2>
+				<h2>Payment Status: ${detail.pstat}</h2>
+				<h2>Status : ${detail.status}</h2>`;
+			}
+			// <label for="name">Name: </label>
+			// <input type="text" id="name" value = "${detail.name}">
+		}
+	}
+
+	function saveData() {
+		if (phone && detail.name && detail.style && detail.time) {
+			localStorage.setItem(phone, JSON.stringify(detail));
+			(detail = {}), (phone = "");
+			console.log("Data Saved");
+			let justRegistered = 1;
+			login(justRegistered);
+		} else {
+			console.log("Some of the data is missing, please complete the form.");
+		}
+	}
+
+	function getData(phone) {
+		return localStorage[phone];
 	}
 })();
