@@ -91,7 +91,7 @@
 	}
 
 	function adminLoginConformation() {
-		console.log("User name : " + username + "\nPassword: " + password);
+		// console.log("User name : " + username + "\nPassword: " + password);
 		if (1 || admin == username) {
 			if (1 || passkey == password) {
 				document.getElementsByTagName("form")[0].style.display = "none";
@@ -123,15 +123,29 @@
 			let pn = localStorage.key(i);
 			let dtl = JSON.parse(localStorage.getItem(localStorage.key(i)));
 			console.log(`${pn}` + dtl);
+			if (!dtl.pstat) dtl.pstat = `Not paid`;
+			if (!dtl.status) dtl.status = `Waiting`;
 			pannel.innerHTML += `<table><tr>
 			<td class = "phoneOnList" >${pn}</td>
 			<td class = "nameOnList" >${dtl.name}</td>
 			<td class = "hairStyleOnList" >		<img src=images/${dtl.style}.jpg alt="Fail to load">	</td>
 			<td class = "timeChoosen" >${dtl.time}</td>
-			<td class = "payStatus" >${dtl.payStat}</td>
+			<td class = "payStatus" >${dtl.pstat}</td>
 			<td class = "queueStatus" >${dtl.status}</td>
 			<td class = "queueAction" > <button class="action"> Action </button> </td>
 			</tr></table>`;
+		}
+		setInterval(function () {
+			adminPannel();
+		}, 30000);  // Admin pannel 30/30 seconds maa refresh garne...
+		document.getElementById("refresh").addEventListener("click", function () {
+			adminPannel();
+		});
+		for (let i = 0; i < localStorage.length; i++) {
+			document.querySelectorAll(".queueAction")[i].addEventListener("click", function () {
+				let actionPhone = localStorage.key(i);
+				console.log(actionPhone);
+			});
 		}
 	}
 
@@ -302,9 +316,7 @@
 			</form>`;
 			document.getElementById("checkPhone").addEventListener("click", function () {
 				let enteredPhone = document.getElementById("phone").value;
-				console.log(enteredPhone);
 				detail = JSON.parse(localStorage.getItem(enteredPhone));
-				console.log(detail);
 				if (detail) {
 					phone = enteredPhone;
 					main.innerHTML = `<form>
@@ -319,16 +331,26 @@
 				}
 			});
 			function display() {
-				main.innerHTML = `<h2>Name: ${detail.name}.</h2>
+				if (!detail.pstat) detail.pstat = `Not paid yet. <button id = "makePayment">Pay Now</button>`;
+				if (!detail.status) detail.status = `Waiting`;
+				main.innerHTML = `<h2>Name: ${detail.name}</h2>
 				<h2>Phone: ${phone}</h2>
 				<h2>Style: </h2>
 				<img src="images/${detail.style}.jpg" alt="Image Processing Error" style="max-width: 100px;">
 				<h2>Time: ${detail.time}</h2>
 				<h2>Payment Status: ${detail.pstat}</h2>
-				<h2>Status : ${detail.status}</h2>`;
+				<h2>Status : ${detail.status}</h2>
+				<button id = "logOut">Log Out</button>`;
+				if (!(detail.pstat == "paid")) detail.pstat = false;
+				document.getElementById("makePayment").addEventListener("click", function () {
+					payment();
+				});
+				document.getElementById("logOut").addEventListener("click", function () {
+					(phone = ""), (detail = {});
+					insideMain();
+					homePageClickHandler();
+				});
 			}
-			// <label for="name">Name: </label>
-			// <input type="text" id="name" value = "${detail.name}">
 		}
 	}
 
@@ -344,7 +366,7 @@
 		}
 	}
 
-	function getData(phone) {
-		return localStorage[phone];
+	function payment() {
+		//payment function goes here....
 	}
 })();
