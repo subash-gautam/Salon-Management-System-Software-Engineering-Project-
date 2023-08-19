@@ -343,9 +343,18 @@
 		} else display();
 		function display() {
 			timeNow = time();
-			if (!detail.pstat) detail.pstat = `Not paid yet. <button id = "makePayment">Pay Now</button>`;
-			if (timeNow >= detail.time) detail.status = `It is your turn.`;
-			else detail.status = `Waiting`;
+
+			const spliTime = detail.time.split(":");
+			if (spliTime[1] < 30) spliTime[1] = parseInt(spliTime[1]) + 30;
+			else {
+				spliTime[0] = parseInt(spliTime[0]) + 1;
+				spliTime[1] = parseInt(spliTime[1]) - 30;
+			}
+			let etime = spliTime.join(":");
+			console.log(etime);
+			if (timeNow >= detail.time && timeNow < etime) detail.status = `It is your turn till ${etime}`;
+			else if (timeNow < detail.time) detail.status = `Your booking is at ${detail.time}, wait till then.`;
+			else detail.status = `Thank You for visiting us.`;
 			main.innerHTML = `<h2>Name: ${detail.name}</h2>
 			<h2>Phone: ${phone}</h2>
 			<h2>Style: </h2>
