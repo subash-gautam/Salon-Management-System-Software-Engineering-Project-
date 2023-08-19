@@ -94,6 +94,7 @@ button:hover {
 /* Admin Table Css */
 table {
 	overflow: scroll;
+	width: 100%;
 }
 table tr td,
 table tbody tr td {
@@ -112,8 +113,20 @@ table tbody tr td {
 	display: flex;
 	border-radius: 20px;
 }
-
+main,
+main #demos {
+	display: flex;
+	flex-wrap: wrap;
+	/* justify-content: space-between; */
+	justify-content: center;
+}
+main h1,
+main h2 {
+	width: 100%;
+}
 .thumbnail {
+	width: calc(33.33% - 10px);
+	margin-bottom: 20px;
 	flex: 1;
 	min-width: 30%;
 	position: relative;
@@ -122,9 +135,9 @@ table tbody tr td {
 	background-color: bisque;
 }
 
-.thumbnail:last-child {
+/* .thumbnail:last-child {
 	margin-right: 0;
-}
+} */
 
 .thumbnail-image {
 	background-size: cover;
@@ -177,4 +190,18 @@ img {
 
 #barberImg {
 	width: 50%;
+}
+
+#fixed {
+	position: fixed;
+	top: 40%;
+	left: 55%;
+	transform: translateX(-50%);
+	background-color: #f0f0f0;
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+.hidden {
+	display: none;
 }

@@ -44,9 +44,9 @@
 	}
 
 	function booking() {
-		main.innerHTML = `<h1>Select A Style</h1>`;
+		main.innerHTML = `<h1>Select A Style</h1><br><br>`;
 		main.innerHTML += `<h2>Simple Styles</h2>`;
-		for (let i = 0; i < 2; i++) {
+		for (let i = 0; i < 3; i++) {
 			main.innerHTML += `<div class="thumbnail simpleDisplay">
                 <div class="thumbnail-image">
                     <img src="images/simple${i + 1}.jpg" class="imgData" data-style="simple" data-index="${i + 1}">
@@ -58,7 +58,7 @@
             </div>`;
 		}
 		main.innerHTML += `<h2>Special Styles</h2>`;
-		for (let i = 0; i < 7; i++) {
+		for (let i = 0; i < 6; i++) {
 			main.innerHTML += `<div class="thumbnail specialDisplay">
                 <div class="thumbnail-image">
                     <img src="images/special${i + 1}.jpg" class="imgData" data-style="special" data-index="${i + 1}">
@@ -73,7 +73,7 @@
 		for (let i = 0; i < 3; i++) {
 			main.innerHTML += `<div class="thumbnail beardDisplay">
                 <div class="thumbnail-image">
-                    <img src="images/beard${i + 1}.jpg"> class="imgData" data-style="beard" data-index="${i + 1}"
+                    <img src="images/beard${i + 1}.jpg" class="imgData" data-style="beard" data-index="${i + 1}">
                 </div>
                 <div class="thumbnail-content">
                     <h3>Beard Style${i + 1}</h3>
@@ -108,7 +108,7 @@
 
 	function adminPannel() {
 		var pannel = document.getElementById("adminPannel");
-		pannel.innerHTML = `<table>
+		pannel.innerHTML = `<table id="myTable">
             <tr>
 				<td id = "phoneOnList" >Phone Number</td>
 				<td id = "nameOnList" >Name</td>
@@ -117,8 +117,7 @@
                 <td id = "payStatus" >Payment Status</td>
                 <td id = "queueStatus" >Status</td>
                 <td id = "queueAction"><button id="refresh">&#10227;</button></td>
-            </tr>
-			</table>`;
+            </tr></table>`;
 		for (let i = 0; i < localStorage.length; i++) {
 			let pn = localStorage.key(i);
 			let dtl = JSON.parse(localStorage.getItem(localStorage.key(i)));
@@ -126,27 +125,31 @@
 			if (!dtl.pstat) dtl.pstat = `Not paid`;
 			if (!dtl.status) dtl.status = `Waiting`;
 			pannel.innerHTML += `<table><tr>
-			<td class = "phoneOnList" >${pn}</td>
-			<td class = "nameOnList" >${dtl.name}</td>
-			<td class = "hairStyleOnList" >		<img src=images/${dtl.style}.jpg alt="Fail to load">	</td>
-			<td class = "timeChoosen" >${dtl.time}</td>
-			<td class = "payStatus" >${dtl.pstat}</td>
-			<td class = "queueStatus" >${dtl.status}</td>
-			<td class = "queueAction" > <button class="action"> Action </button> </td>
-			</tr></table>`;
+				<td class = "phoneOnList" >${pn}</td>
+				<td class = "nameOnList" >${dtl.name}</td>
+				<td class = "hairStyleOnList" >		<img src=images/${dtl.style}.jpg alt="Fail to load">	</td>
+				<td class = "timeChoosen" >${dtl.time}</td>
+				<td class = "payStatus" >${dtl.pstat}</td>
+				<td class = "queueStatus" >${dtl.status}</td>
+				<td class = "queueAction" > <button class="action"> kick </button> </td>
+				</tr></table>`;
 		}
-		setInterval(function () {
-			adminPannel();
-		}, 30000);  // Admin pannel 30/30 seconds maa refresh garne...
+		if (localStorage.length == 0) pannel.innerHTML += `There are not any existing customers at the time.`;
+		sortTable();
 		document.getElementById("refresh").addEventListener("click", function () {
 			adminPannel();
 		});
 		for (let i = 0; i < localStorage.length; i++) {
-			document.querySelectorAll(".queueAction")[i].addEventListener("click", function () {
+			document.querySelectorAll(".action")[i].addEventListener("click", function () {
 				let actionPhone = localStorage.key(i);
-				console.log(actionPhone);
+				localStorage.removeItem(actionPhone);
+				console.log(actionPhone + " removed");
+				adminPannel();
 			});
 		}
+		setInterval(function () {
+			adminPannel();
+		}, 30000); // Admin pannel 30/30 seconds maa refresh garne...
 	}
 
 	function insideMain() {
@@ -330,35 +333,38 @@
 					login(0);
 				}
 			});
-			function display() {
-				if (!detail.pstat) detail.pstat = `Not paid yet. <button id = "makePayment">Pay Now</button>`;
-				if (!detail.status) detail.status = `Waiting`;
-				main.innerHTML = `<h2>Name: ${detail.name}</h2>
-				<h2>Phone: ${phone}</h2>
-				<h2>Style: </h2>
-				<img src="images/${detail.style}.jpg" alt="Image Processing Error" style="max-width: 100px;">
-				<h2>Time: ${detail.time}</h2>
-				<h2>Payment Status: ${detail.pstat}</h2>
-				<h2>Status : ${detail.status}</h2>
-				<button id = "logOut">Log Out</button>`;
-				if (!(detail.pstat == "paid")) detail.pstat = false;
-				document.getElementById("makePayment").addEventListener("click", function () {
-					payment();
-				});
-				document.getElementById("logOut").addEventListener("click", function () {
-					(phone = ""), (detail = {});
-					insideMain();
-					homePageClickHandler();
-				});
-			}
+		} else display();
+		function display() {
+			if (!detail.pstat) detail.pstat = `Not paid yet. <button id = "makePayment">Pay Now</button>`;
+			if (!detail.status) detail.status = `Waiting`;
+			main.innerHTML = `<h2>Name: ${detail.name}</h2>
+			<h2>Phone: ${phone}</h2>
+			<h2>Style: </h2>
+			<img src="images/${detail.style}.jpg" alt="Image Processing Error" style="max-width: 100px;">
+			<button class = "change">Change</button>
+			<h2>Time: ${detail.time}</h2>
+			<h2>Payment Status: ${detail.pstat}</h2>
+			<h2>Status : ${detail.status}</h2>
+			<button id = "logOut">Log Out</button>`;
+			if (!(detail.pstat == "paid")) detail.pstat = false;
+			document.getElementById("makePayment").addEventListener("click", function () {
+				payment();
+			});
+			document.querySelector(".change").addEventListener("click", function () {
+				booking();
+			});
+			document.getElementById("logOut").addEventListener("click", function () {
+				(phone = ""), (detail = {});
+				insideMain();
+				homePageClickHandler();
+			});
 		}
 	}
 
 	function saveData() {
 		if (phone && detail.name && detail.style && detail.time) {
 			localStorage.setItem(phone, JSON.stringify(detail));
-			(detail = {}), (phone = "");
-			console.log("Data Saved");
+			alert("Registration information updated Successful !!");
 			let justRegistered = 1;
 			login(justRegistered);
 		} else {
@@ -367,6 +373,53 @@
 	}
 
 	function payment() {
-		//payment function goes here....
+		let cost;
+		if (detail.style[0] == "s") cost = 150;
+		else cost = 100;
+		alert("Payment function procedding ...");
+		main.innerHTML = `<form>
+			<label for="bank">Choose Bank</label>
+			<select>
+				<option value="ABC">ABC Bank</option>
+				<option value="PQR">PQR Bank</option>
+				<option value="XYZ">XYZ Bank</option>
+			</select>
+			<label for="uName">Username: </label>
+			<input type="text" id="uName" />
+			<label for="password">Password: </label>
+			<input type="text" id="password" />
+			<br>
+			<p> You're paying ${cost} for selected hair cut.
+			<button id="payBtn">Pay</button>
+		</form>`;
+		document.getElementById("payBtn").addEventListener("click", function () {
+			alert(`${cost} paid successfully !! `);
+			detail.pstat = `paid`;
+			saveData();
+		});
+	}
+
+	function sortTable() {
+		var table, rows, switching, i, x, y, shouldSwitch;
+		table = document.getElementById("myTable");
+		switching = true;
+		while (switching) {
+			switching = false;
+			rows = table.rows;
+			for (i = 1; i < rows.length - 1; i++) {
+				//start by saying there should be no switching:
+				shouldSwitch = false;
+				x = rows[i].getElementsByTagName("TD")[4];
+				y = rows[i + 1].getElementsByTagName("TD")[4];
+				if (x > y) {
+					shouldSwitch = true;
+					break;
+				}
+			}
+			if (shouldSwitch) {
+				rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+				switching = true;
+			}
+		}
 	}
 })();
