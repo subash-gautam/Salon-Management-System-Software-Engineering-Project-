@@ -6,8 +6,7 @@
 	const logInPannel = document.getElementById("logInPannel");
 	var main = document.getElementsByTagName("main")[0];
 	const admin = "barber",
-		passkey = "password",
-		period = 30; //average time for a haircut.
+		passkey = "password";
 	var username,
 		password,
 		phone,
@@ -125,9 +124,18 @@
 			let pn = localStorage.key(i);
 			let dtl = JSON.parse(localStorage.getItem(localStorage.key(i)));
 			console.log(`${pn}` + dtl);
+			const spliTime = dtl.time.split(":");
+			if (spliTime[1] < 30) spliTime[1] = parseInt(spliTime[1]) + 30;
+			else {
+				spliTime[0] = parseInt(spliTime[0]) + 1;
+				spliTime[1] = parseInt(spliTime[1]) - 30;
+			}
+			let etime = spliTime.join(":");
+			console.log(etime);
+			if (timeNow >= dtl.time && timeNow < etime) dtl.status = `Being surved till ${etime}`;
+			else if (timeNow < dtl.time) dtl.status = `Waiting`;
+			else dtl.status = `Sercived`;
 			if (!dtl.pstat) dtl.pstat = `Not paid`;
-			if (timeNow >= dtl.time) dtl.status = `Should being surved`;
-			else dtl.status = `Waiting`;
 			pannel.innerHTML += `<table><tr>
 				<td class = "phoneOnList" >${pn}</td>
 				<td class = "nameOnList" >${dtl.name}</td>
@@ -183,15 +191,11 @@
             </div>
         </section>
         <section id="logInPannel">
-            <div id="logInDiv"><button id="booking">Book Now</button>
-            <button id="userLogin">Log In</button>
-            <button id="barberInfo">About Barber</button>
-            <button id="barberLogin">Barber Login</button></div>
         </section>`;
 
 		document.getElementById("logInPannel").innerHTML = `<div id="logInDiv"><button id="booking">Book Now</button>
         <button id="userLogin">Log In</button>
-        <button id="barberInfo">About Barber</button>
+        <button id="barberInfo">Contact Us</button>
         <button id="barberLogin">Barber Login</button></div>`;
 	}
 
@@ -256,7 +260,7 @@
 		}
 		setTimeout(function () {
 			console.log(`There are ${count} ${style} styles.`);
-			var imgIndex = Math.floor(Math.random() * count) + 1;
+			// var imgIndex = Math.floor(Math.random() * count) + 1;
 			document.getElementById("demos").innerHTML = " ";
 			for (let i = 0; i < count; i++) {
 				document.getElementById("demos").innerHTML += `<div class="thumbnail">

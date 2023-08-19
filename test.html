@@ -1,0 +1,21 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="demo"></div>
+		<script>
+			const csvData = "John,Doe,30";
+			alert(csvData);
+			const dataArray = csvData.split(",");
+			alert(dataArray);
+			dataArray[2] = "31"; // Update the age
+			const updatedCSV = dataArray.join(",");
+			alert(updatedCSV); // Output: "John,Doe,31"
+		</script>
+	</body>
+</html>
