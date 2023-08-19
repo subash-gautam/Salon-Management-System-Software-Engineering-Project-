@@ -11,6 +11,7 @@
 	var username,
 		password,
 		phone,
+		timeNow,
 		detail = {};
 
 	insideMain();
@@ -108,6 +109,8 @@
 
 	function adminPannel() {
 		var pannel = document.getElementById("adminPannel");
+		timeNow = time();
+		console.log(timeNow);
 		pannel.innerHTML = `<table id="myTable">
             <tr>
 				<td id = "phoneOnList" >Phone Number</td>
@@ -123,7 +126,8 @@
 			let dtl = JSON.parse(localStorage.getItem(localStorage.key(i)));
 			console.log(`${pn}` + dtl);
 			if (!dtl.pstat) dtl.pstat = `Not paid`;
-			if (!dtl.status) dtl.status = `Waiting`;
+			if (timeNow >= dtl.time) dtl.status = `Should being surved`;
+			else dtl.status = `Waiting`;
 			pannel.innerHTML += `<table><tr>
 				<td class = "phoneOnList" >${pn}</td>
 				<td class = "nameOnList" >${dtl.name}</td>
@@ -135,7 +139,6 @@
 				</tr></table>`;
 		}
 		if (localStorage.length == 0) pannel.innerHTML += `There are not any existing customers at the time.`;
-		sortTable();
 		document.getElementById("refresh").addEventListener("click", function () {
 			adminPannel();
 		});
@@ -335,8 +338,10 @@
 			});
 		} else display();
 		function display() {
+			timeNow = time();
 			if (!detail.pstat) detail.pstat = `Not paid yet. <button id = "makePayment">Pay Now</button>`;
-			if (!detail.status) detail.status = `Waiting`;
+			if (timeNow >= detail.time) detail.status = `It is your turn.`;
+			else detail.status = `Waiting`;
 			main.innerHTML = `<h2>Name: ${detail.name}</h2>
 			<h2>Phone: ${phone}</h2>
 			<h2>Style: </h2>
@@ -368,7 +373,7 @@
 			let justRegistered = 1;
 			login(justRegistered);
 		} else {
-			console.log("Some of the data is missing, please complete the form.");
+			alert("Some of the data is missing, please complete the form.");
 		}
 	}
 
@@ -387,7 +392,7 @@
 			<label for="uName">Username: </label>
 			<input type="text" id="uName" />
 			<label for="password">Password: </label>
-			<input type="text" id="password" />
+			<input type="password" id="password" />
 			<br>
 			<p> You're paying ${cost} for selected hair cut.
 			<button id="payBtn">Pay</button>
@@ -399,27 +404,10 @@
 		});
 	}
 
-	function sortTable() {
-		var table, rows, switching, i, x, y, shouldSwitch;
-		table = document.getElementById("myTable");
-		switching = true;
-		while (switching) {
-			switching = false;
-			rows = table.rows;
-			for (i = 1; i < rows.length - 1; i++) {
-				//start by saying there should be no switching:
-				shouldSwitch = false;
-				x = rows[i].getElementsByTagName("TD")[4];
-				y = rows[i + 1].getElementsByTagName("TD")[4];
-				if (x > y) {
-					shouldSwitch = true;
-					break;
-				}
-			}
-			if (shouldSwitch) {
-				rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-				switching = true;
-			}
-		}
+	function time() {
+		const now = new Date();
+		const hours = String(now.getHours()).padStart(2, "0");
+		const minutes = String(now.getMinutes()).padStart(2, "0");
+		return `${hours}:${minutes}`;
 	}
 })();
