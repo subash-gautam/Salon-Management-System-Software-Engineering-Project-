@@ -296,7 +296,7 @@
             <img src="images/${style}${index}.jpg" id="confirmStyleImg" alt"${style} ${index} ">
             <button id="changeStyle">Change</button>
 			<label for"time">Select prefered time: </label>
-			<input type="time" id="time" value="${detail.time}" step="${period * 60000}">
+			<input type="time" id="time" value="${detail.time}" step="${30 * 60000}">
             <button type="submit" id="submitForToken" >Apply for Token</button>
         </form>`;
 		document.getElementById("submitForToken").addEventListener("click", function (evt) {
@@ -343,7 +343,6 @@
 		} else display();
 		function display() {
 			timeNow = time();
-
 			const spliTime = detail.time.split(":");
 			if (spliTime[1] < 30) spliTime[1] = parseInt(spliTime[1]) + 30;
 			else {
@@ -355,20 +354,21 @@
 			if (timeNow >= detail.time && timeNow < etime) detail.status = `It is your turn till ${etime}`;
 			else if (timeNow < detail.time) detail.status = `Your booking is at ${detail.time}, wait till then.`;
 			else detail.status = `Thank You for visiting us.`;
+			if (!(detail.pstat == "paid")) detail.pstat = `Not Paid <button id = "makePayment">Pay Now</button>`;
 			main.innerHTML = `<h2>Name: ${detail.name}</h2>
 			<h2>Phone: ${phone}</h2>
 			<h2>Style: </h2>
 			<img src="images/${detail.style}.jpg" alt="Image Processing Error" style="max-width: 100px;">
-			<button class = "change">Change</button>
+			<button id = "change">Change</button>
 			<h2>Time: ${detail.time}</h2>
 			<h2>Payment Status: ${detail.pstat}</h2>
 			<h2>Status : ${detail.status}</h2>
 			<button id = "logOut">Log Out</button>`;
-			if (!(detail.pstat == "paid")) detail.pstat = false;
+
 			document.getElementById("makePayment").addEventListener("click", function () {
 				payment();
 			});
-			document.querySelector(".change").addEventListener("click", function () {
+			document.querySelector("#change").addEventListener("click", function () {
 				booking();
 			});
 			document.getElementById("logOut").addEventListener("click", function () {
@@ -394,7 +394,6 @@
 		let cost;
 		if (detail.style[0] == "s") cost = 150;
 		else cost = 100;
-		alert("Payment function procedding ...");
 		main.innerHTML = `<form>
 			<label for="bank">Choose Bank</label>
 			<select>
